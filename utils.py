@@ -74,6 +74,7 @@ def hammingDistance(a,b):
 
 def writeDataToFile(filename,datas):
     if os.path.exists(filename):
+        print 'utils.writeDataToFile error: %s is exists'%filename
         return
     with open(filename,'w') as fp:
         for i in xrange(len(datas)):

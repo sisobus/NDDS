@@ -45,6 +45,7 @@ def generateClusteredData(options):
     dataFileName = 'data/data_%d_%d_%d_%d.txt'%(size,dim,cluster,cardinality)
 
     command = 'perl data/gdp.pl %d %d %d %d %s'%(size,cluster,dim,cardinality,dataFileName)
+    print command
     executeCommand(command)
     print dataFileName
 
