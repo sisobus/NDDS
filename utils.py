@@ -7,6 +7,7 @@ import os
 import glob
 import commands
 from optparse import OptionParser
+import matplotlib.pyplot as plt
 
 def getOptions():
     parser = OptionParser()
