@@ -4,7 +4,7 @@ import utils
 import os
 import glob
 
-class A:
+class CC:
     def __init__(self):
         self.x = 0
         self.id1 = 0
@@ -18,30 +18,35 @@ class A:
             return self.id1 < self.id2
         return self.x < other.x
 
-datas = utils.getDataInFile('data/data_100000_10_u_4.txt')
+if __name__ == '__main__':
+    options = utils.getOptions()
+    dataFileName = 'data/data_%d_%d_%s_%d.txt'%(options['numberOfData'],options['numberOfDimension'],options['distribution'],options['numberOfAlphabet'])
+    
+    print dataFileName
+    datas = utils.getDataInFile(dataFileName)
 
-filenames = glob.glob('vp/*.txt')
-for filename in filenames:
-    print filename
-    with open(filename,'r') as fp:
-        lines = fp.read().rstrip().split('\n')
-    vps = []
-    for line in lines:
-        vps.append(line.rstrip().split(' '))
-    cc = []
-    for i in xrange(len(vps)):
-        for j in xrange(len(vps)):
-            if i == j:
-                continue
-            cc.append(A(abs(utils.calculateCorrelationCoefficient(vps[i],vps[j],datas)),i,j))
-    cc.sort()
-    print cc[-1].x, vps[cc[-1].id1], vps[cc[-1].id2]
-    print cc[-2].x, vps[cc[-2].id1], vps[cc[-2].id2]
-    print cc[-3].x, vps[cc[-3].id1], vps[cc[-3].id2]
-    print cc[-4].x, vps[cc[-4].id1], vps[cc[-4].id2]
-    print ''
-    print cc[0].x, vps[cc[0].id1], vps[cc[0].id2]
-    print cc[1].x, vps[cc[1].id1], vps[cc[1].id2]
-    print cc[2].x, vps[cc[2].id1], vps[cc[2].id2]
-    print cc[3].x, vps[cc[3].id1], vps[cc[3].id2]
-    print ''
+    filenames = glob.glob('vp/*.txt')
+    for filename in filenames:
+        if int(filename.split('_')[1]) <> options['numberOfDimension']:
+            continue
+        print filename
+        with open(filename,'r') as fp:
+            lines = fp.read().rstrip().split('\n')
+        vps = []
+        for line in lines:
+            vps.append(line.rstrip().split(' '))
+        cc = []
+        for i in xrange(len(vps)):
+            for j in xrange(len(vps)):
+                if i == j:
+                    continue
+                cc.append(CC(abs(utils.calculateCorrelationCoefficient(vps[i],vps[j],datas)),i,j))
+        cc.sort()
+        for i in xrange(4):
+            cur = -(i+1)
+            print cc[cur].x, vps[cc[cur].id1], vps[cc[cur].id2]
+        print ''
+        for i in xrange(4):
+            cur = i
+            print cc[cur].x, vps[cc[cur].id1], vps[cc[cur].id2]
+        print ''
