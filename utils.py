@@ -21,6 +21,8 @@ def getOptions():
             help='input number of alphabet',dest='numberOfAlphabet')
     parser.add_option('-b','--distribution',default='u',
             help='uniform: u skewed: c1 10-cluster: c10',dest='distribution')
+    parser.add_option('-v','--vptype',default='greedy',
+            help='type of vantage point [greedy,random,AA,AB]',dest='vptype')
     (options, args) = parser.parse_args(sys.argv[1:])
 
     numberOfData        = int(options.numberOfData)
@@ -28,12 +30,14 @@ def getOptions():
     numberOfDimension   = int(options.numberOfDimension)
     numberOfAlphabet    = int(options.numberOfAlphabet)
     distribution        = str(options.distribution)
+    typeOfVP            = str(options.vptype)
     ret = {
         'numberOfData'      : numberOfData,
         'numberOfVP'        : numberOfVP,
         'numberOfDimension' : numberOfDimension,
         'numberOfAlphabet'  : numberOfAlphabet,
         'distribution'      : distribution,
+        'typeOfVP'          : typeOfVP,
             }
     return ret
 
@@ -88,7 +92,7 @@ def readDataFromFile(filename):
     with open(filename,'r') as fp:
         lines = fp.read().rstrip().split('\n')
     for line in lines:
-        datas.append(line.aplit(' '))
+        datas.append(line.rstrip().split(' '))
     return datas
 
 def calculateCorrelationCoefficient(vp1,vp2,datas):
