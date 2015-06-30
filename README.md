@@ -5,13 +5,20 @@
 
 ## generate_data.py
 데이터를 생성해주는 스크립트입니다.
+
 -n : number of data 
+
 -m : number of vantage point
+
 -d : number of dimension
+
 -a : number of alphabet
+
 -b : distribution [ u : uniform, c1 : skewed, c10 : 10-cluster ]
 
+
 data directory에 있는 gdp.pl perl script를 이용합니다.
+
 ex) python generate_data.py -n 100000 -d 25 -a 4 -b u
 
 ## generate_vantage_point.py
