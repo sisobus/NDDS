@@ -65,24 +65,56 @@ def getTotalDistance(vps,vp):
     ret =  (float(sSquare) / n) - (m*m)
     return float(ret)
 
+def getTotalCostFunction(vps,vp,base):
+    tvps = []
+    for i in xrange(len(vps)):
+        t = []
+        for j in xrange(len(vps[i])):
+            t.append(vps[i][j])
+        tvps.append(t)
+    t = []
+    for i in xrange(len(vp)):
+        t.append(vp[i])
+    tvps.append(t)
+
+    s = 0.0
+    sSquare = 0.0
+    n = 0
+    
+    for i in xrange(len(tvps)):
+        for j in xrange(len(tvps)):
+            if i == j:
+                continue
+            dist = abs(base-float(utils.hammingDistance(tvps[i],tvps[j])))
+            s = s + dist
+            sSquare = sSquare + (dist * dist)
+            n = n + 1
+
+    return s
+    m = float(s) / n
+
+    ret =  (float(sSquare) / n) - (m*m)
+    return float(ret)
+
 def generateGreedyVantagePoints(options):
     alphabet = list(string.ascii_uppercase)
     dim          = options['numberOfDimension']
     numberOfVP   = options['numberOfVP']
     cardinality  = options['numberOfAlphabet']
+    base         = abs(float(dim)-float(dim)/float(cardinality))
 
     getCornerPoints(0,[],dim,alphabet,cardinality)
     vps = []
     vps.append([ 'A' for i in xrange(dim) ])
-    vps.append([ 'B' for i in xrange(dim) ])
-    vps.append([ 'C' for i in xrange(dim) ])
-    vps.append([ 'D' for i in xrange(dim) ])
-    for i in xrange(numberOfVP - 4):
+    #vps.append([ 'B' for i in xrange(dim) ])
+    #vps.append([ 'C' for i in xrange(dim) ])
+    #vps.append([ 'D' for i in xrange(dim) ])
+    for i in xrange(numberOfVP - 1):
         print i
         #mx, mx_idx = (0,0)
-        mn, mn_idx = (987654321,0)
+        mn, mn_idx = (987654321.0,0)
         for j in xrange(len(cornerPoints)):
-            variation = getTotalDistance(vps,cornerPoints[j])
+            variation = getTotalCostFunction(vps,cornerPoints[j],base)
             if mn > variation:
                 mn, mn_idx = (variation,j)
             #if mx < dist:
@@ -96,6 +128,5 @@ if __name__ == '__main__':
     options = utils.getOptions()
 
     utils.createDirectory('vp')
-    generateVantagePoints(options)
     #generateVantagePoints(options)
-    #generateGreedyVantagePoints(options)
+    generateGreedyVantagePoints(options)

@@ -29,6 +29,10 @@ if __name__ == '__main__':
     for filename in filenames:
         if int(filename.split('_')[1]) <> options['numberOfDimension']:
             continue
+        if int(filename.split('_')[2]) <> options['numberOfVP']:
+            continue
+        if int(filename.split('_')[3]) <> options['numberOfAlphabet']:
+            continue
         print filename
         with open(filename,'r') as fp:
             lines = fp.read().rstrip().split('\n')
@@ -42,11 +46,11 @@ if __name__ == '__main__':
                     continue
                 cc.append(CC(abs(utils.calculateCorrelationCoefficient(vps[i],vps[j],datas)),i,j))
         cc.sort()
-        for i in xrange(4):
+        for i in xrange(min(4,len(cc))):
             cur = -(i+1)
             print cc[cur].x, vps[cc[cur].id1], vps[cc[cur].id2]
         print ''
-        for i in xrange(4):
+        for i in xrange(min(4,len(cc))):
             cur = i
             print cc[cur].x, vps[cc[cur].id1], vps[cc[cur].id2]
         print ''

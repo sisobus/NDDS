@@ -17,6 +17,9 @@ if __name__ == '__main__':
         cardinality = onlyFileName.split('_')[4]
         
         queryFileName = 'query/query_%s_%s_%s_%s.txt'%(size,dim,vptype,cardinality)
+        if os.path.exists(queryFileName):
+            print '%s is exists'%(queryFileName)
+            continue
         print queryFileName
         datas = utils.getDataInFile(dataFileName)
         queryDatas = []
