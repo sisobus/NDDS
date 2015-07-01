@@ -52,6 +52,13 @@ def saveGraph(imageFileName,xp,yp):
     plt.savefig(imageFileName,dpi=100)
     plt.clf()
 
+def saveGraphWithHighValue(imageFileName,xp,yp,highValue):
+    plt.plot(xp,yp,lw=2)
+    plt.text(len(xp),0,str(highValue))
+    plt.xlim(0,len(xp)+1)
+    plt.savefig(imageFileName,dpi=100)
+    plt.clf()
+
 def getDataInFile(filename):
     onlyFileName = filename.split('.')[0]
     numberOfDataSize  = int(onlyFileName.split('_')[1])
@@ -116,3 +123,56 @@ def calculateCorrelationCoefficient(vp1,vp2,datas):
 
     ret = (size*sumOfSubD1iAndD2i - sumOfD1i*sumOfD2i) / (math.sqrt(size*sumOfD1iSquare - (sumOfD1i*sumOfD1i)) * math.sqrt(size*sumOfD2iSquare - (sumOfD2i*sumOfD2i)) )
     return ret
+
+def getDataFileName(options):
+    size            = options['numberOfData']
+    dim             = options['numberOfDimension']
+    distribution    = options['distribution']
+    cardinality     = options['numberOfAlphabet']
+    dataFileName    = 'data/data_%d_%d_%s_%d.txt'%(size,dim,distribution,cardinality)
+    return dataFileName
+
+def getQueryFileName(options):
+    size            = options['numberOfData']
+    dim             = options['numberOfDimension']
+    distribution    = options['distribution']
+    cardinality     = options['numberOfAlphabet']
+    queryFileName   = 'query/query_%d_%d_%s_%d.txt'%(size,dim,distribution,cardinality)
+    return queryFileName
+
+def getVPFileName(options):
+    dim             = options['numberOfDimension']
+    numberOfVP      = options['numberOfVP']
+    cardinality     = options['numberOfAlphabet']
+    typeOfVP        = options['typeOfVP']
+    vpFileName      = 'vp/vp_%d_%d_%d_%s.txt'%(dim,numberOfVP,cardinality,typeOfVP)
+    return vpFileName
+
+def getCDSDataFileName(options):
+    size            = options['numberOfData']
+    numberOfVP      = options['numberOfVP']
+    distribution    = options['distribution']
+    cardinality     = options['numberOfAlphabet']
+    typeOfVP        = options['typeOfVP']
+    cdsDataFileName = 'cds_data/data_%d_%d_%s_%d_%s.txt'%(size,numberOfVP,distribution,cardinality,typeOfVP)
+    return cdsDataFileName
+
+def getCDSQueryFileName(options):
+    size                = options['numberOfData']
+    distribution        = options['distribution']
+    cardinality         = options['numberOfAlphabet']
+    numberOfVP          = options['numberOfVP']
+    typeOfVP            = options['typeOfVP']
+    cdsQueryFileName    = 'cds_query/query_%d_%d_%s_%d_%s.txt'%(size,numberOfVP,distribution,cardinality,typeOfVP)
+    return cdsQueryFileName
+
+def getImageFileName(options,tag):
+    size            = options['numberOfData']
+    dim             = options['numberOfDimension']
+    distribution    = options['distribution']
+    cardinality     = options['numberOfAlphabet']
+    numberOfVP      = options['numberOfVP']
+    typeOfVP        = options['typeOfVP']
+    imageFileName   = 'figure/figure_%d_%d_%s_%d_%d_%s_%d.png'%(size,dim,distribution,cardinality,numberOfVP,typeOfVP,tag)
+    return imageFileName
+
