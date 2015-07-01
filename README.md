@@ -43,8 +43,6 @@ Correlation Coefficient를 계산해주는 스크립트입니다.
 
 - 옵션을 주어 데이터 파일과 빈티지 포인트 디렉토리에 있는 것으로 Correlation Coefficient를 구해줍니다.
 
-ex) python calculate_cc.py -n 1000 -d 10 -a 2 -b u -m 2
-
 ## convert_ndds_to_cds.py
 빈티지 포인트를 이용하여 NDDS 데이터 포인트와 쿼리 포인트를 cds 로 변환해줍니다.
 
