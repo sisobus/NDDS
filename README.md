@@ -12,11 +12,18 @@
   - -v : type of vantage point [ greedy, random, AA, AB, etc ... ]
 - createDirectory(directoryFileName) : 말그대로 디렉토리를 생성해줍니다.
 - saveGraph(imageFileName,xp,yp) : x에 대한 y값 그래프를 그려서 png image로 저장해줍니다.
+- saveGraphWithHighValue(imageFileName,xp,yp,highValue) : x에 대한 y값 그래프와 최고점의 값을 그려서 png image로 저장해줍니다.
 - getDataInFile(filename) : gdp perl script의 데이터 파일 형식이 파싱을 필요로 하기 때문에 모든 데이터는 이와 같은 형식을 갖고 있습니다. 이러한 데이터 파일을 파싱해서 2차원 리스트로 반환해줍니다.
 - hammingDistance(a,b) : 두 포인트의 해밍 거리를 구해줍니다.
 - writeDataToFile(filename,datas) : 2차원 리스트를 파일에 출력합니다.
 - readDataFromFile(filename) : 파일로부터 2차원 리스트를 로드합니다.
 - calculateCorrelationCoefficient(vp1,vp2,datas) : 두 빈티지 포인트의 Correlation Coefficient를 구해줍니다.
+- getDataFileName(options) : argument options을 이용하여 데이터 파일 이름을 반환해줍니다.
+- getQueryFileName(options) : argument options을 이용하여 Query 파일 이름을 반환해줍니다.
+- getVPFileName(options) : argument options을 이용하여 빈티지 포인트 파일 이름을 반환해줍니다.
+- getCDSDataFileName(options) : argument options을 이용하여 cds 데이터 파일 이름을 반환해줍니다.
+- getCDSQueryFileName(options) : argument options을 이용하여 cds Query 파일 이름을 반환해줍니다.
+- getImageFileName(options) : argument options을 이용하여 이미지 파일 이름을 반환해줍니다.
 
 
 ## generate_data.py
@@ -51,3 +58,11 @@ ex) python calculate_cc.py -n 1000 -d 10 -a 2 -b u -m 2
 - cds_data, cds_query directory에 저장됩니다.
 
 ex) python convert_ndds_to_cds.py -n 100000 -d 10 -m 10 -a 4 -b u -v greedy
+
+## draw_deep_graph.py
+빈티지 포인트들을 이용하여 데이터 포인트가 얼마나 퍼지는지 그래프를 그려주는 스크립트입니다. 
+
+- 모든 상태를 보여줄 수 없으니, 각 빈티지 포인트에 의해 매핑된 좌표 중 가장 많이 나타난 좌표에 매핑된 포인트를 기준으로 다음 빈티지 포인트로 매핑해준다.
+- 얼마만큼 줄어들었느냐가 퍼짐의 척도가 된다.
+
+ex) python draw_deep_graph.py -n 100000 -d 10 -m 10 -a 4 -b u -v greedy
