@@ -7,3 +7,4 @@ cds_query/*
 figure/*
 *.swp
 *.pyc
+nd_tree/run
