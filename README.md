@@ -40,10 +40,14 @@ ex) python generate_data.py -n 100000 -d 25 -a 4 -b u
 - generateVantagePoints(options) 를 수정해서 빈티지 포인트를 뽑을 수있습니다.
 - generateGreedyVantagePoints(options) 로 2차년도 과제의 greedy 알고리즘을 이용하여 빈티지 포인트를 생성합니다. |A|가 4일 때, 10차원을 초과하면 굉장히 늦습니다.
 
+ex) python generate_vantage_point.py -d 10 -m 10 -a 4 
+
 ## generate_query.py
 query를 생성하는 스크립트입니다.
 
 - data directory에 존재하는 모든 데이터에 대해서 100개의 랜덤 query points를 생성합니다.
+
+ex) python generate_query.py
 
 ## calculate_cc.py
 Correlation Coefficient를 계산해주는 스크립트입니다.
