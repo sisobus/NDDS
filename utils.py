@@ -23,6 +23,8 @@ def getOptions():
             help='uniform: u skewed: c1 10-cluster: c10',dest='distribution')
     parser.add_option('-v','--vptype',default='greedy',
             help='type of vantage point [greedy,random,AA,AB]',dest='vptype')
+    parser.add_option('-r','--range',default='1',
+            help='radius of range',dest='queryRange')
     (options, args) = parser.parse_args(sys.argv[1:])
 
     numberOfData        = int(options.numberOfData)
@@ -31,6 +33,7 @@ def getOptions():
     numberOfAlphabet    = int(options.numberOfAlphabet)
     distribution        = str(options.distribution)
     typeOfVP            = str(options.vptype)
+    queryRange          = int(options.queryRange)
     ret = {
         'numberOfData'      : numberOfData,
         'numberOfVP'        : numberOfVP,
@@ -38,6 +41,7 @@ def getOptions():
         'numberOfAlphabet'  : numberOfAlphabet,
         'distribution'      : distribution,
         'typeOfVP'          : typeOfVP,
+        'queryRange'        : queryRange,
             }
     return ret
 
@@ -150,7 +154,7 @@ def getVPFileName(options):
 
 def getCDSDataFileName(options):
     size            = options['numberOfData']
-    numberOfVP      = options['numberOfVP']
+    numberOfVP      = options['numberOfDimension']
     distribution    = options['distribution']
     cardinality     = options['numberOfAlphabet']
     typeOfVP        = options['typeOfVP']
@@ -161,7 +165,7 @@ def getCDSQueryFileName(options):
     size                = options['numberOfData']
     distribution        = options['distribution']
     cardinality         = options['numberOfAlphabet']
-    numberOfVP          = options['numberOfVP']
+    numberOfVP          = options['numberOfDimension']
     typeOfVP            = options['typeOfVP']
     cdsQueryFileName    = 'cds_query/query_%d_%d_%s_%d_%s.txt'%(size,numberOfVP,distribution,cardinality,typeOfVP)
     return cdsQueryFileName
