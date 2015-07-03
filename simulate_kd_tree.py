@@ -35,7 +35,8 @@ def executeNDT(options):
     dim = options['numberOfDimension']
     size = options['numberOfData']
     queryRange = options['queryRange']
-    command = 'cd kd_tree ; ./kdtree -load_file data.txt -orig_dim %d -dim %d -rqfile query.txt -range %d -count %d'%(dim,dim,queryRange,size)
+    numberOfVP = options['numberOfVP']
+    command = 'cd kd_tree ; ./kdtree -load_file data.txt -orig_dim %d -dim %d -rqfile query.txt -range %d -count %d'%(dim,numberOfVP,queryRange,size)
     result = utils.executeCommand(command)
     print result
 
