@@ -24,6 +24,9 @@
 - getCDSDataFileName(options) : argument options을 이용하여 cds 데이터 파일 이름을 반환해줍니다.
 - getCDSQueryFileName(options) : argument options을 이용하여 cds Query 파일 이름을 반환해줍니다.
 - getImageFileName(options) : argument options을 이용하여 이미지 파일 이름을 반환해줍니다.
+- getNDTDataFileName(options) : argument options을 이용하여 nd_tree 버전 데이터 파일 이름을 반환해줍니다.
+- getNDTQueryFileName(options) : argument optios을 이용하여 nd_tree 버전 Query 파일 이름을 반환해줍니다.
+- executeCommand(command) : commands 라이브러리를 이용하여 command를 수행합니다.
 
 
 ## generate_data.py
@@ -70,3 +73,31 @@ ex) python convert_ndds_to_cds.py -n 100000 -d 10 -m 10 -a 4 -b u -v greedy
 - 얼마만큼 줄어들었느냐가 퍼짐의 척도가 됩니다.
 
 ex) python draw_deep_graph.py -n 100000 -d 10 -m 10 -a 4 -b u -v greedy
+
+## convert_data_for_ndt.py
+NDDS 데이터 파일과 Query 파일 형식을 nd_tree의 파일 형식에 맞게 변경해주는 스크립트입니다.
+
+- nd_tree의 데이터 파일과 range query, box query 파일의 형식은 정수형으로 이루어져 있습니다.
+  - A = 0, B = 1, C = 2, D = 3, ...
+  - 아마 ND-tree가 그룹을 비트 마스트를 이용하여 쉽게 하기 위해서 인듯 합니다.
+  - 이를 이용하면 알파벳 개수에 제한 없이 그루핑을 할 수 있는 것 같습니다.
+- data/*.txt 와 query/*.txt의 데이터 형식을 변형하여 ndt_data 와 ndt_query 디렉토리로 옮겨줍니다.
+
+ex) python convert_data_for_ndt.py
+
+## simulate_nd_tree.py
+nd_tree 디렉토리의 NDT 파일을 실행해주는 스크립트입니다.
+
+- NDT 프로그램은 특이하게 config.h 파일 안에 차원이나 데이터의 개수 등등을 const int로 정의하였습니다.
+- 이를 수정하기보다, 기존의 config.h 파일을 original_config.h로 옮겨두고, NDT를 실행할 때마다 옵션 값을 수정하여 config.h를 새로 생성하도록 만들었습니다.
+- NDT 프로그램은 데이터의 파일 형식도 sourceData%d+0.txt, rangequeryAll.txt, boxqueryAll.txt 로 고정되어 있으므로 ndt_data, ndt_query 디렉토리 하위에 있는 파일을 nd_tree디렉토리로 옮기며 이름을 위와 같이 변경해주도록 구현했습니다.
+
+- 이 스크립트의 수행 flow는 다음과 같습니다.
+  - options을 argument로 받습니다.
+  - original_config.h 파일을 options에 맞게 수정하여 config.h 파일을 생성합니다.
+  - ndt_data 디렉토리 하위에 있는 options에 맞는 데이터 파일을 nd_tree/sourceData%d+0.txt 로 옮깁니다.
+  - ndt_query 디렉토리 하위에 있는 options에 맞는 Query 파일을 nd_tree/rangequeryAll.txt, nd_tree/boxqueryAll.txt 로 옮깁니다.
+  - nd_tree 디렉토리의 make를 수행합니다.
+  - NDT 프로그램을 실행합니다.
+
+ex) python simulate_nd_tree.py -n 100000 -d 10
