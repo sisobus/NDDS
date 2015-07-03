@@ -12,7 +12,7 @@ def copyDataFile(options):
     if not os.path.exists(dataFileName):
         print 'copyDataFile error:%s is not exists'%dataFileName
         exit(-1)
-    command = 'cp %s kd_tree/data.txt'
+    command = 'cp %s kd_tree/data.txt'%dataFileName
     utils.executeCommand(command)
     print 'copyDataFile complete'
 
@@ -22,7 +22,7 @@ def copyQueryFile(options):
     if not os.path.exists(queryFileName):
         print 'copyQueryFile error:%s is not exists'%queryFileName
         exit(-1)
-    command = 'cp %s kd_tree/query.txt'
+    command = 'cp %s kd_tree/query.txt'%queryFileName
     utils.executeCommand(command)
     print 'copyQueryFile complete'
 
