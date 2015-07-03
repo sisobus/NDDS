@@ -176,3 +176,22 @@ def getImageFileName(options,tag):
     imageFileName   = 'figure/figure_%d_%d_%s_%d_%d_%s_%d.png'%(size,dim,distribution,cardinality,numberOfVP,typeOfVP,tag)
     return imageFileName
 
+def getNDTDataFileName(options):
+    size            = options['numberOfData']
+    dim             = options['numberOfDimension']
+    distribution    = options['distribution']
+    cardinality     = options['numberOfAlphabet']
+    ndtDataFileName    = 'ndt_data/data_%d_%d_%s_%d.txt'%(size,dim,distribution,cardinality)
+    return ndtDataFileName
+
+def getNDTQueryFileName(options):
+    size            = options['numberOfData']
+    dim             = options['numberOfDimension']
+    distribution    = options['distribution']
+    cardinality     = options['numberOfAlphabet']
+    ndtQueryFileName    = 'ndt_query/query_%d_%d_%s_%d.txt'%(size,dim,distribution,cardinality)
+    return ndtQueryFileName
+
+def executeCommand(command):
+    ret = commands.getoutput(command)
+    return ret

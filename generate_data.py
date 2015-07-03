@@ -33,8 +33,6 @@ def generateUniformData(options):
             fp.write('\n')
     print dataFileName
 
-def executeCommand(command):
-    ret = commands.getoutput(command)
 
 def generateClusteredData(options):
     alphabet     = list(string.ascii_uppercase)
@@ -46,7 +44,7 @@ def generateClusteredData(options):
 
     command = 'perl data/gdp.pl %d %d %d %d %s'%(size,cluster,dim,cardinality,dataFileName)
     print command
-    executeCommand(command)
+    utils.executeCommand(command)
     print dataFileName
 
 
