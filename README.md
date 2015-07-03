@@ -10,6 +10,7 @@
   - -a : number of alphabet
   - -b : distribution [ u : uniform, c1 : skewed, c10 : 10-cluster ]
   - -v : type of vantage point [ greedy, random, AA, AB, etc ... ]
+  - -r : query range
 - createDirectory(directoryFileName) : 말그대로 디렉토리를 생성해줍니다.
 - saveGraph(imageFileName,xp,yp) : x에 대한 y값 그래프를 그려서 png image로 저장해줍니다.
 - saveGraphWithHighValue(imageFileName,xp,yp,highValue) : x에 대한 y값 그래프와 최고점의 값을 그려서 png image로 저장해줍니다.
@@ -101,3 +102,17 @@ nd_tree 디렉토리의 NDT 파일을 실행해주는 스크립트입니다.
   - NDT 프로그램을 실행합니다.
 
 ex) python simulate_nd_tree.py -n 100000 -d 10
+
+## simulate_kd_tree.py
+kd_tree 디렉토리의 kdtree 파일을 실행해주는 스크립트입니다.
+
+- kdtree 프로그램은 boost_1_55_0 라이브러리의 설치를 필요로 합니다.
+- http://www.boost.org/users/history/version_1_55_0.html
+- 에서 받을 수 있고, /usr/local/ 에 설치하면됩니다.
+
+- cds_data, cds_query 디렉토리 안의 데이터와 query포인트를 이용합니다.
+- simulate_nd_tree.py 스크립트와 유사하게 cds_data, cds_query 디렉토리 안의 데이터와 query 파일을 kd_tree/data.txt, kd_tree/query.txt 로 카피합니다.
+- make를 수행하고, cd kd_tree ; ./kdtree -load_file data.txt -orig_dim %d -dim %d -rqfile query.txt -range %d -count %d 를 수행합니다.
+- range는 -r로 줍니다.
+
+ex) python simulate_kd_tree.py -n 100000 -d 10 -m 10 -r 1
