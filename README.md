@@ -115,4 +115,4 @@ kd_tree 디렉토리의 kdtree 파일을 실행해주는 스크립트입니다.
   - make를 수행하고, cd kd_tree ; ./kdtree -load_file data.txt -orig_dim %d -dim %d -rqfile query.txt -range %d -count %d 를 수행합니다.
   - range는 -r로 줍니다.
 
-ex) python simulate_kd_tree.py -n 100000 -d 10 -m 10 -r 1
+ex) python simulate_kd_tree.py -n 100000 -d 10 -m 10 -r 1 -v greedy
