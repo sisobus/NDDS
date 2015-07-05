@@ -25,32 +25,25 @@ if __name__ == '__main__':
     print dataFileName
     datas = utils.getDataInFile(dataFileName)
 
-    filenames = glob.glob('vp/*.txt')
-    for filename in filenames:
-        if int(filename.split('_')[1]) <> options['numberOfDimension']:
-            continue
-        if int(filename.split('_')[2]) <> options['numberOfVP']:
-            continue
-        if int(filename.split('_')[3]) <> options['numberOfAlphabet']:
-            continue
-        print filename
-        with open(filename,'r') as fp:
-            lines = fp.read().rstrip().split('\n')
-        vps = []
-        for line in lines:
-            vps.append(line.rstrip().split(' '))
-        cc = []
-        for i in xrange(len(vps)):
-            for j in xrange(len(vps)):
-                if i == j:
-                    continue
-                cc.append(CC(abs(utils.calculateCorrelationCoefficient(vps[i],vps[j],datas)),i,j))
-        cc.sort()
-        for i in xrange(min(4,len(cc))):
-            cur = -(i+1)
-            print cc[cur].x, vps[cc[cur].id1], vps[cc[cur].id2]
-        print ''
-        for i in xrange(min(4,len(cc))):
-            cur = i
-            print cc[cur].x, vps[cc[cur].id1], vps[cc[cur].id2]
-        print ''
+    filename = utils.getVPFileName(options)
+    print filename
+    with open(filename,'r') as fp:
+        lines = fp.read().rstrip().split('\n')
+    vps = []
+    for line in lines:
+        vps.append(line.rstrip().split(' '))
+    cc = []
+    for i in xrange(len(vps)):
+        for j in xrange(len(vps)):
+            if i == j:
+                continue
+            cc.append(CC(abs(utils.calculateCorrelationCoefficient(vps[i],vps[j],datas)),i,j))
+    cc.sort()
+    for i in xrange(min(4,len(cc))):
+        cur = -(i+1)
+        print cc[cur].x, vps[cc[cur].id1], vps[cc[cur].id2]
+    print ''
+    for i in xrange(min(4,len(cc))):
+        cur = i
+        print cc[cur].x, vps[cc[cur].id1], vps[cc[cur].id2]
+    print ''

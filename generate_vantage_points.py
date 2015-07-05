@@ -23,6 +23,18 @@ def generateVantagePoints(options):
     
     utils.writeDataToFile('vp/vp_%d_%d_%d_random.txt'%(dim,numberOfVP,cardinality),vps)
 
+def generateAllRandomVantagePoints(options):
+    dim          = options['numberOfDimension']
+    numberOfVP   = options['numberOfVP']
+    cardinality  = options['numberOfAlphabet']
+    typeOfVP     = options['typeOfVP']
+
+    vps = []
+    for i in xrange(numberOfVP):
+        vps.append(generateUniformRandomVP(dim,cardinality))
+
+    utils.writeDataToFile('vp/vp_%d_%d_%d_%s.txt'%(dim,numberOfVP,cardinality,typeOfVP),vps)
+
 cornerPoints = []
 def getCornerPoints(pos,vp,dim,alphabet,cardinality):
     if pos == dim:
@@ -129,4 +141,5 @@ if __name__ == '__main__':
 
     utils.createDirectory('vp')
     #generateVantagePoints(options)
-    generateGreedyVantagePoints(options)
+    #generateGreedyVantagePoints(options)
+    generateAllRandomVantagePoints(options)
