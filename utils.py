@@ -196,6 +196,14 @@ def getNDTQueryFileName(options):
     ndtQueryFileName    = 'ndt_query/query_%d_%d_%s_%d.txt'%(size,dim,distribution,cardinality)
     return ndtQueryFileName
 
+def getRQResultFileName(options):
+    size            = options['numberOfData']
+    dim             = options['numberOfDimension']
+    distribution    = options['distribution']
+    cardinality     = options['numberOfAlphabet']
+    rqResultFileName = 'rq_result/result_%d_%d_%s_%d.txt'%(size,dim,distribution,cardinality)
+    return rqResultFileName
+
 def executeCommand(command):
     ret = commands.getoutput(command)
     return ret

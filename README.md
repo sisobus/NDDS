@@ -27,6 +27,7 @@
 - getImageFileName(options) : argument options을 이용하여 이미지 파일 이름을 반환해줍니다.
 - getNDTDataFileName(options) : argument options을 이용하여 nd_tree 버전 데이터 파일 이름을 반환해줍니다.
 - getNDTQueryFileName(options) : argument optios을 이용하여 nd_tree 버전 Query 파일 이름을 반환해줍니다.
+- def getRQResultFileName(options) : argument options를 이용하여 range query result filename을 반환해줍니다.
 - executeCommand(command) : commands 라이브러리를 이용하여 command를 수행합니다.
 
 
@@ -116,3 +117,15 @@ kd_tree 디렉토리의 kdtree 파일을 실행해주는 스크립트입니다.
   - range는 -r로 줍니다.
 
 ex) python simulate_kd_tree.py -n 100000 -d 10 -m 10 -r 1 -v greedy
+
+## simulate_kd_tree_auto_range.py
+simulate_kd_tree.py 의 queryRange를 1부터 dimension-1까지 실행해주는 스크립트입니다.
+
+ex) python simulate_kd_tree_auto_range.py -n 100000 -d 10 -m 10 -v greedy
+
+## generate_rq_result.py
+data file과 query file로 linear한 range query 결과를 생성해주는 스크립트입니다.
+
+- 당연히 true negative는 존재하지 않습니다.
+
+ex) python generate_rq_result.py -n 100000 -d 10 -a 4 -b u

@@ -17,3 +17,4 @@ ndt_data/*
 ndt_query/*
 
 kd_tree/*
+rq_result/*
