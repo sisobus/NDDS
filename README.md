@@ -14,6 +14,8 @@
 - createDirectory(directoryFileName) : 말그대로 디렉토리를 생성해줍니다.
 - saveGraph(imageFileName,xp,yp) : x에 대한 y값 그래프를 그려서 png image로 저장해줍니다.
 - saveGraphWithHighValue(imageFileName,xp,yp,highValue) : x에 대한 y값 그래프와 최고점의 값을 그려서 png image로 저장해줍니다.
+- saveGraphUsingPointWithCC(imageFileName,xp,yp,cc,dim) : x에 대한 y값 그래프와 correlation coefficient를 그려서 png image로 저장해줍니다.
+- saveGraphUsing3DSurfaceWithCC(imageFileName,xp,yp,zp,cc,dim) : x, y, z에 대한 그래프와 correlation coefficient를 그려서 png image로 저장해줍니다.
 - getDataInFile(filename) : gdp perl script의 데이터 파일 형식이 파싱을 필요로 하기 때문에 모든 데이터는 이와 같은 형식을 갖고 있습니다. 이러한 데이터 파일을 파싱해서 2차원 리스트로 반환해줍니다.
 - hammingDistance(a,b) : 두 포인트의 해밍 거리를 구해줍니다.
 - writeDataToFile(filename,datas) : 2차원 리스트를 파일에 출력합니다.
@@ -24,10 +26,11 @@
 - getVPFileName(options) : argument options을 이용하여 빈티지 포인트 파일 이름을 반환해줍니다.
 - getCDSDataFileName(options) : argument options을 이용하여 cds 데이터 파일 이름을 반환해줍니다.
 - getCDSQueryFileName(options) : argument options을 이용하여 cds Query 파일 이름을 반환해줍니다.
-- getImageFileName(options) : argument options을 이용하여 이미지 파일 이름을 반환해줍니다.
+- getImageFileName(options,tag) : argument options을 이용하여 이미지 파일 이름을 반환해줍니다.
 - getNDTDataFileName(options) : argument options을 이용하여 nd_tree 버전 데이터 파일 이름을 반환해줍니다.
 - getNDTQueryFileName(options) : argument optios을 이용하여 nd_tree 버전 Query 파일 이름을 반환해줍니다.
-- def getRQResultFileName(options) : argument options를 이용하여 range query result filename을 반환해줍니다.
+- getRQResultFileName(options) : argument options를 이용하여 range query result filename을 반환해줍니다.
+- getFigurePairName(options,id1,id2) : argument options를 이용하여 figure pair filename을 반환해줍니다.
 - executeCommand(command) : commands 라이브러리를 이용하여 command를 수행합니다.
 
 
@@ -129,3 +132,11 @@ data file과 query file로 linear한 range query 결과를 생성해주는 스�
 - 당연히 true negative는 존재하지 않습니다.
 
 ex) python generate_rq_result.py -n 100000 -d 10 -a 4 -b u
+
+## draw_pair_graph.py
+빈티지 포인트 집합안에서 모든 pair의 공간변환 후 그래프를 그려줍니다.
+
+- 2d 그래프로 그리면 얼만큼 뭉쳐있는지를 알 수 없어서 3d로 그립니다.
+- z 축은 x,y 에 매핑된 데이터 포인트의 수를 나타냅니다.
+
+ex) python draw_pair_graph.py -n 100000 -d 10 -m 10 -a 4 -b u -v random

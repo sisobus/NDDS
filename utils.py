@@ -8,6 +8,10 @@ import glob
 import commands
 from optparse import OptionParser
 import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+from matplotlib import cm
+from matplotlib.ticker import LinearLocator, FormatStrFormatter
+from matplotlib.ticker import MaxNLocator
 
 def getOptions():
     parser = OptionParser()
@@ -60,6 +64,31 @@ def saveGraphWithHighValue(imageFileName,xp,yp,highValue):
     plt.plot(xp,yp,lw=2)
     plt.text(len(xp),0,str(highValue))
     plt.xlim(0,len(xp)+1)
+    plt.savefig(imageFileName,dpi=100)
+    plt.clf()
+
+def saveGraphUsingPointWithCC(imageFileName,xp,yp,cc,dim):
+    plt.plot(xp,yp,'ro')
+    plt.text(dim-2.5,0,str(cc))
+    plt.xlim(0,dim)
+    plt.ylim(0,dim)
+    plt.savefig(imageFileName,dpi=100)
+    plt.clf()
+
+def saveGraphUsing3DSurfaceWithCC(imageFileName,xp,yp,zp,cc,dim):
+    fig = plt.figure()
+    ax = fig.add_subplot(111, projection='3d')
+    surf = ax.plot_trisurf(xp, yp, zp, cmap=cm.jet, linewidth=0)
+    fig.colorbar(surf)
+
+    ax.xaxis.set_major_locator(MaxNLocator(5))
+    ax.yaxis.set_major_locator(MaxNLocator(6))
+    ax.zaxis.set_major_locator(MaxNLocator(5))
+
+    fig.tight_layout()
+    plt.title('%s'%str(cc))
+    plt.xlim(0,dim)
+    plt.ylim(0,dim)
     plt.savefig(imageFileName,dpi=100)
     plt.clf()
 
@@ -203,6 +232,16 @@ def getRQResultFileName(options):
     cardinality     = options['numberOfAlphabet']
     rqResultFileName = 'rq_result/result_%d_%d_%s_%d.txt'%(size,dim,distribution,cardinality)
     return rqResultFileName
+
+def getFigurePairName(options,id1,id2):
+    size            = options['numberOfData']
+    dim             = options['numberOfDimension']
+    distribution    = options['distribution']
+    cardinality     = options['numberOfAlphabet']
+    numberOfVP      = options['numberOfVP']
+    typeOfVP        = options['typeOfVP']
+    imageFileName   = 'figure_pair/figure_%d_%d_%s_%d_%d_%s_%d_%d.png'%(size,dim,distribution,cardinality,numberOfVP,typeOfVP,id1,id2)
+    return imageFileName
 
 def executeCommand(command):
     ret = commands.getoutput(command)

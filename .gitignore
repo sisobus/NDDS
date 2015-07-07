@@ -18,3 +18,6 @@ ndt_query/*
 
 kd_tree/*
 rq_result/*
+
+figure_pair/*
+.DS_Store
