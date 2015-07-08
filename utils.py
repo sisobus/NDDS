@@ -84,9 +84,14 @@ def saveGraphUsing3DSurfaceWithCC(imageFileName,xp,yp,zp,cc,dim):
     ax.xaxis.set_major_locator(MaxNLocator(5))
     ax.yaxis.set_major_locator(MaxNLocator(6))
     ax.zaxis.set_major_locator(MaxNLocator(5))
+    ax.set_zlim(0,9000)
+    mx = 0
+    for i in xrange(len(zp)):
+        mx = max(mx,zp[i])
+
 
     fig.tight_layout()
-    plt.title('%s'%str(cc))
+    plt.title('%s %s'%(str(cc),str(mx)))
     plt.xlim(0,dim)
     plt.ylim(0,dim)
     plt.savefig(imageFileName,dpi=100)
@@ -233,14 +238,14 @@ def getRQResultFileName(options):
     rqResultFileName = 'rq_result/result_%d_%d_%s_%d.txt'%(size,dim,distribution,cardinality)
     return rqResultFileName
 
-def getFigurePairName(options,id1,id2):
+def getFigurePairName(options,id1,id2,cc):
     size            = options['numberOfData']
     dim             = options['numberOfDimension']
     distribution    = options['distribution']
     cardinality     = options['numberOfAlphabet']
     numberOfVP      = options['numberOfVP']
     typeOfVP        = options['typeOfVP']
-    imageFileName   = 'figure_pair/figure_%d_%d_%s_%d_%d_%s_%d_%d.png'%(size,dim,distribution,cardinality,numberOfVP,typeOfVP,id1,id2)
+    imageFileName   = 'figure_pair/figure_%.8f_%d_%d_%s_%d_%d_%s_%d_%d.png'%(cc,size,dim,distribution,cardinality,numberOfVP,typeOfVP,id1,id2)
     return imageFileName
 
 def executeCommand(command):
