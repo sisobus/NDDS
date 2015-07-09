@@ -41,14 +41,14 @@
 
 ex) python generate_data.py -n 100000 -d 25 -a 4 -b u
 
-## generate_vantage_point.py
+## generate_vantage_points.py
 빈티지 포인트를 생성하는 스크립트입니다.
 
 - 사용자가 원하는 데로 수정해서 사용해야합니다.
 - generateVantagePoints(options) 를 수정해서 빈티지 포인트를 뽑을 수있습니다.
 - generateGreedyVantagePoints(options) 로 2차년도 과제의 greedy 알고리즘을 이용하여 빈티지 포인트를 생성합니다. |A|가 4일 때, 10차원을 초과하면 굉장히 늦습니다.
 
-ex) python generate_vantage_point.py -d 10 -m 10 -a 4 
+ex) python generate_vantage_points.py -d 10 -m 10 -a 4 
 
 ## generate_query.py
 query를 생성하는 스크립트입니다.
