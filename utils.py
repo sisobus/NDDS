@@ -84,7 +84,7 @@ def saveGraphUsing3DSurfaceWithCC(imageFileName,xp,yp,zp,cc,dim):
     ax.xaxis.set_major_locator(MaxNLocator(5))
     ax.yaxis.set_major_locator(MaxNLocator(6))
     ax.zaxis.set_major_locator(MaxNLocator(5))
-    ax.set_zlim(0,9000)
+    #ax.set_zlim(0,9000)
     mx = 0
     for i in xrange(len(zp)):
         mx = max(mx,zp[i])
