@@ -36,7 +36,7 @@ if __name__ == '__main__':
                 yp.append(y)
             for k in xrange(len(xp)):
                 zp.append(zcnt[yp[k]][xp[k]])
-            #utils.saveGraphUsingPointWithCC(imageFileName,xp,yp,cc,dim)
-            utils.saveGraphUsing3DSurfaceWithCC(imageFileName,xp,yp,zp,cc,dim)
+            utils.saveGraphUsingPointWithCC(imageFileName,xp,yp,cc,dim)
+            #utils.saveGraphUsing3DSurfaceWithCC(imageFileName,xp,yp,zp,cc,dim)
 
 
