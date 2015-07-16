@@ -140,3 +140,11 @@ ex) python generate_rq_result.py -n 100000 -d 10 -a 4 -b u
 - z 축은 x,y 에 매핑된 데이터 포인트의 수를 나타냅니다.
 
 ex) python draw_pair_graph.py -n 100000 -d 10 -m 10 -a 4 -b u -v random
+
+## calculate_linear_time.cpp
+선형 Query time을 재는 코드입니다.
+
+- data directory안에 있는 모든 데이터 파일과 query directory안에 있는 모든 query 파일에 대한 결과를 출력합니다.
+- 결과는 result/result_*.txt에 저장됩니다.
+
+ex) g++ calculate_linear_time.cpp , ./a.out
