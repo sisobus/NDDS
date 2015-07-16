@@ -1,4 +1,5 @@
 #include <cstdio>
+#include <sys/stat.h>
 #include <cassert>
 #include <cstdlib>
 #include <ctime>
@@ -99,8 +100,16 @@ int getHammingDistance(const string& s1,const string& s2) {
         ret += (s1[i] != s2[i]);
     return ret;
 }
+inline bool isFileExists(const string& fileName) {
+    struct stat buffer;
+    return (stat(fileName.c_str(),&buffer) == 0);
+}
 void rangeQuery(const vector<string>& data,const vector<string>& query,map<string,string> options) {
     string resultFileName = "./result/linear_"+options["numberOfData"]+"_"+options["numberOfDimension"]+"_"+options["distribution"]+"_"+options["numberOfAlphabet"]+".txt";
+    if ( isFileExists(resultFileName) ) {
+        printf("%s is exists!\n",resultFileName.c_str());
+        return ;
+    }
     float rqTime = 0.0;
     for ( int i = 0 ; i < (int)query.size() ; i++ ) {
         printf("query#%d\n",i);
@@ -117,14 +126,11 @@ void rangeQuery(const vector<string>& data,const vector<string>& query,map<strin
     }
     rqTime /= (int)query.size();
     FILE *fp = fopen(resultFileName.c_str(),"w");
+    printf("%lf\n",rqTime);
     fprintf(fp,"QueryTime:%lf\n",rqTime);
     fclose(fp);
 }
 int main() {
-    /*
-       clock_t start = clock();
-       printf("%f\n",ans);
-       */
     vector<string> filenames = getFileNamesFromPath("./data/*.txt");
     for ( int i = 0 ; i < (int)filenames.size() ; i++ ) {
         printf("%s\n",filenames[i].c_str());
