@@ -105,7 +105,7 @@ nd_tree 디렉토리의 NDT 파일을 실행해주는 스크립트입니다.
   - nd_tree 디렉토리의 make를 수행합니다.
   - NDT 프로그램을 실행합니다.
 
-ex) python simulate_nd_tree.py -n 100000 -d 10
+ex) python simulate_nd_tree.py -n 100000 -d 10 -b u -a 4
 
 ## simulate_kd_tree.py
 kd_tree 디렉토리의 kdtree 파일을 실행해주는 스크립트입니다.
