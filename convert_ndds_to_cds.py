@@ -15,8 +15,10 @@ def convertNDDSToCDS(options):
     dataFileName    = 'data/data_%d_%d_%s_%d.txt'%(size,dim,distribution,cardinality)
     queryFileName   = 'query/query_%d_%d_%s_%d.txt'%(size,dim,distribution,cardinality)
     vpFileName      = 'vp/vp_%d_%d_%d_%s.txt'%(dim,numberOfVP,cardinality,typeOfVP)
-    cdsDataFileName     = 'cds_data/data_%d_%d_%s_%d_%s.txt'%(size,numberOfVP,distribution,cardinality,typeOfVP)
-    cdsQueryFileName    = 'cds_query/query_%d_%d_%s_%d_%s.txt'%(size,numberOfVP,distribution,cardinality,typeOfVP)
+    cdsDataFileName = utils.getCDSDataFileName(options)
+    cdsQueryFileName= utils.getCDSQueryFileName(options)
+#    cdsDataFileName     = 'cds_data/data_%d_%d_%s_%d_%s.txt'%(size,numberOfVP,distribution,cardinality,typeOfVP)
+#    cdsQueryFileName    = 'cds_query/query_%d_%d_%s_%d_%s.txt'%(size,numberOfVP,distribution,cardinality,typeOfVP)
 
     datas   = utils.getDataInFile(dataFileName)
     querys  = utils.readDataFromFile(queryFileName)

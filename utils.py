@@ -188,20 +188,22 @@ def getVPFileName(options):
 
 def getCDSDataFileName(options):
     size            = options['numberOfData']
-    numberOfVP      = options['numberOfDimension']
+    dim             = options['numberOfDimension']
+    numberOfVP      = options['numberOfVP']
     distribution    = options['distribution']
     cardinality     = options['numberOfAlphabet']
     typeOfVP        = options['typeOfVP']
-    cdsDataFileName = 'cds_data/data_%d_%d_%s_%d_%s.txt'%(size,numberOfVP,distribution,cardinality,typeOfVP)
+    cdsDataFileName = 'cds_data/data_%d_%d_%d_%s_%d_%s.txt'%(size,dim,numberOfVP,distribution,cardinality,typeOfVP)
     return cdsDataFileName
 
 def getCDSQueryFileName(options):
     size                = options['numberOfData']
+    dim                 = options['numberOfDimension']
+    numberOfVP          = options['numberOfVP']
     distribution        = options['distribution']
     cardinality         = options['numberOfAlphabet']
-    numberOfVP          = options['numberOfDimension']
     typeOfVP            = options['typeOfVP']
-    cdsQueryFileName    = 'cds_query/query_%d_%d_%s_%d_%s.txt'%(size,numberOfVP,distribution,cardinality,typeOfVP)
+    cdsQueryFileName    = 'cds_query/query_%d_%d_%d_%s_%d_%s.txt'%(size,dim,numberOfVP,distribution,cardinality,typeOfVP)
     return cdsQueryFileName
 
 def getImageFileName(options,tag):
