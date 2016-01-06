@@ -140,6 +140,20 @@ def readDataFromFile(filename):
         datas.append(line.rstrip().split(' '))
     return datas
 
+def calculateSpacingVariance(vp,datas):
+    d = [ 0.0 for i in xrange(len(datas)) ]
+    average = 0.0
+    for i in xrange(len(datas)):
+        d[i] = hammingDistance(vp,datas[i])
+        average = average + d[i]
+    average = float(average) / len(datas)
+    d.sort()
+    ret = 0.0
+    for i in xrange(len(datas)-1):
+        ret = ret + ((d[i+1]-d[i])-average)*((d[i+1]-d[i])-average)
+    ret = ret / (len(datas)-1)
+    return ret/10000
+
 def calculateCorrelationCoefficient(vp1,vp2,datas):
     sumOfSubD1iAndD2i = 0
     sumOfD1i          = 0
