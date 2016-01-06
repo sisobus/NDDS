@@ -13,6 +13,7 @@ def replaceIntInString(s,x):
 def setConfigHeaderFile(options):
     size = options['numberOfData']
     dim  = options['numberOfDimension']
+    numberOfAlphabet = options['numberOfAlphabet']
 
     originalConfigFileName = 'nd_tree/original_config.h'
     resultConfigFileName = 'nd_tree/config.h'
@@ -31,6 +32,11 @@ def setConfigHeaderFile(options):
                 continue
             if line.find('DIM') <> -1:
                 replaceString = replaceIntInString(line,dim)
+                fp.write(replaceString+'\n')
+                continue
+            if line.find('const int ALPHA') <> -1:
+                replaceString = replaceIntInString(line,numberOfAlphabet)
+                print replaceString
                 fp.write(replaceString+'\n')
                 continue
     print 'setConfigHeaderFile complete'
