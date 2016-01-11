@@ -148,3 +148,12 @@ ex) python draw_pair_graph.py -n 100000 -d 10 -m 10 -a 4 -b u -v random
 - 결과는 result/result_*.txt에 저장됩니다.
 
 ex) g++ calculate_linear_time.cpp , ./a.out
+
+## generate_vantage_point_using_many.py
+
+- python generate_vantage_point_using_many.py -n 100000 -m 5 -d 40 -a 10 -b 1 -v minor
+
+## calculate_all_pair_distance.py
+모든 페어 거리를 보여주는 코드입니다.
+
+- python calculate_all_pair_distance.py -n 100000 -m 5 -d 40 -a 10 -b 1 -v minor
