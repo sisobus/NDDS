@@ -9,15 +9,11 @@ figure/*
 *.swp
 *.pyc
 
-nd_tree/*.h
-nd_tree/*.cpp
-nd_tree/*
-nd_tree/*.o
+nd_tree_knn/*
 
 ndt_data/*
 ndt_query/*
 
-kd_tree/*
 rq_result/*
 
 figure_pair/*
