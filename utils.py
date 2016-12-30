@@ -29,6 +29,8 @@ def getOptions():
             help='type of vantage point [greedy,random,AA,AB]',dest='vptype')
     parser.add_option('-r','--range',default='1',
             help='radius of range',dest='queryRange')
+    parser.add_option('-k','--knn',default='3',
+            help='knn',dest='knn')
     (options, args) = parser.parse_args(sys.argv[1:])
 
     numberOfData        = int(options.numberOfData)
@@ -37,7 +39,8 @@ def getOptions():
     numberOfAlphabet    = int(options.numberOfAlphabet)
     distribution        = str(options.distribution)
     typeOfVP            = str(options.vptype)
-    queryRange          = int(options.queryRange)
+    queryRange          = float(options.queryRange)
+    knn                 = int(options.knn)
     ret = {
         'numberOfData'      : numberOfData,
         'numberOfVP'        : numberOfVP,
@@ -46,6 +49,7 @@ def getOptions():
         'distribution'      : distribution,
         'typeOfVP'          : typeOfVP,
         'queryRange'        : queryRange,
+        'knn'               : knn,
             }
     return ret
 

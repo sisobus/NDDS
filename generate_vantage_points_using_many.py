@@ -81,5 +81,5 @@ if __name__ == '__main__':
     options = utils.getOptions()
 
     utils.createDirectory('vp')
-#generateVantagePointsWithPattern(options)
+    generateVantagePointsWithPattern(options)
     generateVantagePointsWithManyAlgorithm(options)

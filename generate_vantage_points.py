@@ -168,5 +168,5 @@ if __name__ == '__main__':
     utils.createDirectory('vp')
     #generateVantagePoints(options)
     #generateGreedyVantagePoints(options)
-    #generateAllRandomVantagePoints(options)
-    generateHeuristicVantagePoints(options)
+    generateAllRandomVantagePoints(options)
+#generateHeuristicVantagePoints(options)
